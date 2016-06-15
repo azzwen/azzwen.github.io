@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Retrofit2 探索 | Azzwen的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Retrofit2 是 Square 公司推出的支持 Java 和 Android 平台的 Http 开源框架。该框架使用注解的方式构建 Http 请求，想法非常巧妙，API 也设计的非常优雅。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Retrofit2 探索">
+<meta property="og:url" content="http://azzwen.github.io/2016/06/07/Retrofit2 探索/index.html">
+<meta property="og:site_name" content="Azzwen的博客">
+<meta property="og:description" content="Retrofit2 是 Square 公司推出的支持 Java 和 Android 平台的 Http 开源框架。该框架使用注解的方式构建 Http 请求，想法非常巧妙，API 也设计的非常优雅。">
+<meta property="og:updated_time" content="2016-06-15T10:09:59.970Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Retrofit2 探索">
+<meta name="twitter:description" content="Retrofit2 是 Square 公司推出的支持 Java 和 Android 平台的 Http 开源框架。该框架使用注解的方式构建 Http 请求，想法非常巧妙，API 也设计的非常优雅。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/assets/images/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Azzwen</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">不畏路远，只怕心老。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/azzwen" title="github">github</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/LinearLayout/" style="font-size: 10px;">LinearLayout</a> <a href="/tags/Retrofit2/" style="font-size: 10px;">Retrofit2</a> <a href="/tags/measure/" style="font-size: 10px;">measure</a> <a href="/tags/事件传递/" style="font-size: 10px;">事件传递</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://jirry.github.io/">Jirry的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://hipooo.github.io/">hippo的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">在路上的 Android 菜鸟。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Azzwen</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/assets/images/avatar.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Azzwen</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">不畏路远，只怕心老。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/azzwen" title="github">github</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Retrofit2 探索" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/07/Retrofit2 探索/" class="article-date">
+  	<time datetime="2016-06-07T03:35:41.000Z" itemprop="datePublished">2016-06-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Retrofit2 探索
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Retrofit2/">Retrofit2</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Retrofit2 &#x662F; Square &#x516C;&#x53F8;&#x63A8;&#x51FA;&#x7684;&#x652F;&#x6301; Java &#x548C; Android &#x5E73;&#x53F0;&#x7684; Http &#x5F00;&#x6E90;&#x6846;&#x67B6;&#x3002;&#x8BE5;&#x6846;&#x67B6;&#x4F7F;&#x7528;&#x6CE8;&#x89E3;&#x7684;&#x65B9;&#x5F0F;&#x6784;&#x5EFA; Http &#x8BF7;&#x6C42;&#xFF0C;&#x60F3;&#x6CD5;&#x975E;&#x5E38;&#x5DE7;&#x5999;&#xFF0C;API &#x4E5F;&#x8BBE;&#x8BA1;&#x7684;&#x975E;&#x5E38;&#x4F18;&#x96C5;&#x3002;</p>
+<a id="more"></a>
+<blockquote>
+<p>&#x672C;&#x6587;&#x57FA;&#x4E8E; Retrofit2.0.2</p>
+</blockquote>
+<!-- toc -->
+<ul>
+<li><a href="#&#x5199;&#x5728;&#x524D;&#x9762;">&#x5199;&#x5728;&#x524D;&#x9762;</a></li>
+<li><a href="#&#x89E3;&#x6790;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#x6784;&#x9020;-servicemethod-&#x5BF9;&#x8C61;">&#x89E3;&#x6790;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#xFF0C;&#x6784;&#x9020; ServiceMethod &#x5BF9;&#x8C61;</a><ul>
+<li><a href="#&#x5904;&#x7406;-calladapter">&#x5904;&#x7406; CallAdapter</a><ul>
+<li><a href="#&#x4EC0;&#x4E48;&#x662F;-calladapter">&#x4EC0;&#x4E48;&#x662F; CallAdapter</a></li>
+<li><a href="#&#x5DF2;&#x652F;&#x6301;&#x7684;-calladapter">&#x5DF2;&#x652F;&#x6301;&#x7684; CallAdapter</a></li>
+<li><a href="#calladapter-&#x4ECE;&#x54EA;&#x6765;">CallAdapter &#x4ECE;&#x54EA;&#x6765;</a></li>
+</ul>
+</li>
+<li><a href="#&#x5904;&#x7406;-response-converter">&#x5904;&#x7406; Response Converter</a><ul>
+<li><a href="#&#x4EC0;&#x4E48;&#x662F;-converter">&#x4EC0;&#x4E48;&#x662F; Converter</a></li>
+<li><a href="#buildinconverters">BuildInConverters</a></li>
+<li><a href="#&#x5DF2;&#x652F;&#x6301;&#x7684;-converter">&#x5DF2;&#x652F;&#x6301;&#x7684; Converter</a></li>
+<li><a href="#response-converter-&#x4ECE;&#x54EA;&#x6765;">Response Converter &#x4ECE;&#x54EA;&#x6765;</a></li>
+</ul>
+</li>
+<li><a href="#&#x5904;&#x7406;&#x65B9;&#x6CD5;&#x6CE8;&#x89E3;">&#x5904;&#x7406;&#x65B9;&#x6CD5;&#x6CE8;&#x89E3;</a></li>
+<li><a href="#&#x5904;&#x7406;&#x53C2;&#x6570;&#x6CE8;&#x89E3;">&#x5904;&#x7406;&#x53C2;&#x6570;&#x6CE8;&#x89E3;</a></li>
+</ul>
+</li>
+<li><a href="#&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x89E3;&#x6790;&#x6570;&#x636E;&#x56DE;&#x8C03;">&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#xFF0C;&#x89E3;&#x6790;&#x6570;&#x636E;&#xFF0C;&#x56DE;&#x8C03;</a><ul>
+<li><a href="#&#x6784;&#x9020;-okhttpcall&#x521B;&#x5EFA;-okhttp3call">&#x6784;&#x9020; OkHttpCall&#xFF0C;&#x521B;&#x5EFA; okhttp3.Call</a></li>
+<li><a href="#&#x5BF9;-okhttpcall-&#x8FDB;&#x884C;&#x9002;&#x914D;">&#x5BF9; OkHttpCall &#x8FDB;&#x884C;&#x9002;&#x914D;</a></li>
+<li><a href="#&#x53D1;&#x9001;&#x8BF7;&#x6C42;">&#x53D1;&#x9001;&#x8BF7;&#x6C42;</a></li>
+<li><a href="#&#x89E3;&#x6790;&#x8FD4;&#x56DE;&#x6570;&#x636E;">&#x89E3;&#x6790;&#x8FD4;&#x56DE;&#x6570;&#x636E;</a></li>
+</ul>
+</li>
+<li><a href="#&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</a></li>
+<li><a href="#&#x6536;&#x83B7;">&#x6536;&#x83B7;</a><ul>
+<li><a href="#bulider-&#x6A21;&#x5F0F;&#x4E0E;-factory-&#x6A21;&#x5F0F;&#x7684;&#x5F02;&#x540C;">Bulider &#x6A21;&#x5F0F;&#x4E0E; Factory &#x6A21;&#x5F0F;&#x7684;&#x5F02;&#x540C;</a></li>
+<li><a href="#java-&#x7C7B;&#x578B;&#x5904;&#x7406;">Java &#x7C7B;&#x578B;&#x5904;&#x7406;</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<h1 id="&#x5199;&#x5728;&#x524D;&#x9762;"><a href="#&#x5199;&#x5728;&#x524D;&#x9762;" class="headerlink" title="&#x5199;&#x5728;&#x524D;&#x9762;"></a>&#x5199;&#x5728;&#x524D;&#x9762;</h1><p>&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x7684;&#x4E00;&#x822C;&#x8FC7;&#x7A0B;&#xFF0C;&#x4EE5;<a href="http://square.github.io/retrofit/" target="_blank" rel="external">&#x5B98;&#x7F51;</a>&#x4EE3;&#x7801;&#x4E3A;&#x4F8B;&#x3002;  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//&#x63A5;&#x53E3;&#x5B9A;&#x4E49;</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GitHubService</span> </span>{</span><br><span class="line">    <span class="comment">//&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#x65B9;&#x6CD5;&#x79F0;&#x4E4B;&#x4E3A; Service Method</span></span><br><span class="line">    <span class="annotation">@GET</span>(<span class="string">&quot;users/{user}/repos&quot;</span>)</span><br><span class="line">    Call&lt;List&lt;Repo&gt;&gt; listRepos(<span class="annotation">@Path</span>(<span class="string">&quot;user&quot;</span>) String user);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">    .baseUrl(<span class="string">&quot;https://api.github.com/&quot;</span>)</span><br><span class="line">    .build();</span><br><span class="line"><span class="comment">//&#x521B;&#x5EFA;&#x63A5;&#x53E3;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;</span></span><br><span class="line">GitHubService service = retrofit.create(GitHubService.class);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//&#x53D1;&#x9001;&#x5F02;&#x6B65;&#x8BF7;&#x6C42;</span></span><br><span class="line">Call&lt;List&lt;Repo&gt;&gt; call = service.listRepos(<span class="string">&quot;octocat&quot;</span>);</span><br><span class="line">call.enqueue(<span class="keyword">new</span> Callback&lt;List&lt;Repo&gt;&gt;() {</span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call&lt;List&lt;Repo&gt;&gt; call, Response&lt;List&lt;Repo&gt;&gt; response)</span> </span>{</span><br><span class="line">        <span class="comment">//&#x6B63;&#x786E;&#x56DE;&#x8C03;</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call&lt;List&lt;Repo&gt;&gt; call, Throwable t)</span> </span>{</span><br><span class="line">        <span class="comment">//&#x9519;&#x8BEF;&#x56DE;&#x8C03;</span></span><br><span class="line">    }</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
+<p>&#x5F00;&#x59CB;&#x4E4B;&#x524D;&#xFF0C;&#x6709;&#x4E9B;&#x6982;&#x5FF5;&#x9700;&#x8981;&#x63D0;&#x524D;&#x8BF4;&#x660E;&#x4E00;&#x4E0B;&#x3002;</p>
+<ul>
+<li>Service Method &#x6307;&#x4EC0;&#x4E48;&#xFF1F;<br>&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#x79F0;&#x4E4B;&#x4E3A; Service Method&#x3002;&#x4E4B;&#x6240;&#x4EE5;&#x8FD9;&#x4E48;&#x8BF4;&#xFF0C;&#x662F;&#x56E0;&#x4E3A;&#x63A5;&#x53E3;&#x7684;&#x5B9A;&#x4E49;&#x4FE1;&#x606F;&#x90FD;&#x88AB;&#x89E3;&#x6790;&#x4E3A;&#x4E86;&#x4E00;&#x4E2A;&#x53EB; <code>ServiceMethod</code> &#x7C7B;&#x578B;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x540E;&#x9762;&#x4F1A;&#x8BE6;&#x7EC6;&#x89E3;&#x91CA;&#x3002;</li>
+<li>Return Type &#x4E0E; Response Type?<br><code>responseType</code> &#x662F;&#x6307;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#x4E2D;&#x7684;&#x6CDB;&#x578B;&#x90E8;&#x5206;&#xFF0C;&#x5373;&#x4E4B;&#x524D;&#x4F8B;&#x5B50;&#x4E2D;&#x7684; <code>List&lt;Repo&gt;</code> &#x3002;&#x800C; Return type &#x662F;&#x6307; <code>Call&lt;List&lt;Repo&gt;&gt;</code>&#x3002;<br>&#x5148;&#x6765;&#x770B; <code>Retrofit.create(class&lt;T&gt; service)</code> &#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x9B54;&#x6CD5;&#x53D1;&#x751F;&#x7684;&#x5730;&#x65B9;&#x3002;<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">create</span><span class="params">(<span class="keyword">final</span> Class&lt;T&gt; service)</span> </span>{</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (T) Proxy.newProxyInstance(</span><br><span class="line">        service.getClassLoader(), </span><br><span class="line">        <span class="keyword">new</span> Class&lt;?&gt;[] { service },</span><br><span class="line">        <span class="keyword">new</span> InvocationHandler() {</span><br><span class="line">            <span class="keyword">private</span> <span class="keyword">final</span> Platform platform = Platform.get();</span><br><span class="line">    </span><br><span class="line">            <span class="annotation">@Override</span> </span><br><span class="line">            <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object... args)</span></span>{</span><br><span class="line">                <span class="comment">// &#x4E00;&#x4E9B;&#x5FC5;&#x8981;&#x7684;&#x5224;&#x65AD;</span></span><br><span class="line">                ServiceMethod serviceMethod = loadServiceMethod(method);</span><br><span class="line">                OkHttpCall okHttpCall = <span class="keyword">new</span> OkHttpCall&lt;&gt;(serviceMethod, args);</span><br><span class="line">                <span class="keyword">return</span> serviceMethod.callAdapter.adapt(okHttpCall);</span><br><span class="line">          }</span><br><span class="line">    });</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>Platform</code> &#x7528;&#x4E8E;&#x652F;&#x6301;&#x591A;&#x4E2A;&#x5E73;&#x53F0;&#xFF0C;&#x5305;&#x62EC; Java Android &#x548C; iOS&#xFF08;&#x9700;&#x8981;&#x989D;&#x5916;&#x7684;&#x652F;&#x6301;&#x5305;&#xFF09;&#x3002;&#x540C;&#x65F6;&#xFF0C;<code>Platform</code> &#x5305;&#x542B;&#x4E86;&#x9ED8;&#x8BA4;&#x7684;&#x56DE;&#x8C03; Executor&#xFF08;&#x4E4B;&#x540E;&#x4F1A;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD;&#xFF09; &#x3002;<br>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;<code>create(...)</code>&#x65B9;&#x6CD5;&#x4F7F;&#x7528;<strong>&#x4EE3;&#x7406;&#x65B9;&#x5F0F;</strong> <code>Proxy.newProxyInstance</code> &#x4E3A;&#x6BCF;&#x4E2A; Service Method &#x521B;&#x5EFA;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x3002;&#x8FD9;&#x4E5F;&#x89E3;&#x91CA;&#x4E86;&#x4E3A;&#x4EC0;&#x4E48;&#x6211;&#x4EEC;&#x6CA1;&#x6709;&#x5B9E;&#x73B0; Service Method&#xFF0C;&#x5374;&#x53EF;&#x4EE5;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD; Retrofit2 &#x5904;&#x7406; HTTP &#x8BF7;&#x6C42;&#x7684;&#x8FC7;&#x7A0B;&#x7684;&#x5404;&#x4E2A;&#x9636;&#x6BB5;&#x3002;</p>
+<h1 id="&#x89E3;&#x6790;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#x6784;&#x9020;-servicemethod-&#x5BF9;&#x8C61;"><a href="#&#x89E3;&#x6790;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#xFF0C;&#x6784;&#x9020;-ServiceMethod-&#x5BF9;&#x8C61;" class="headerlink" title="&#x89E3;&#x6790;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#xFF0C;&#x6784;&#x9020; ServiceMethod &#x5BF9;&#x8C61;"></a>&#x89E3;&#x6790;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#xFF0C;&#x6784;&#x9020; ServiceMethod &#x5BF9;&#x8C61;</h1><p><code>ServiceMethod</code> &#x662F; Retrofit2 &#x4E2D;&#x91CD;&#x8981;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5305;&#x542B;&#x4E86;&#x6784;&#x9020; HTTP &#x8BF7;&#x6C42;&#x7684;&#x6240;&#x6709;&#x4FE1;&#x606F;&#x3002;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ServiceMethod <span class="title">loadServiceMethod</span><span class="params">(Method method)</span> </span>{</span><br><span class="line">    ServiceMethod result;</span><br><span class="line">    <span class="keyword">synchronized</span> (serviceMethodCache) {</span><br><span class="line">        result = serviceMethodCache.get(method);</span><br><span class="line">        <span class="keyword">if</span> (result == <span class="keyword">null</span>) {</span><br><span class="line">            result = <span class="keyword">new</span> ServiceMethod.Builder(<span class="keyword">this</span>, method).build();</span><br><span class="line">            serviceMethodCache.put(method, result);</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p><code>loadServiceMethod</code> &#x65B9;&#x6CD5;&#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF0C;&#x53EA;&#x662F;&#x6839;&#x636E;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#x6784;&#x9020; <code>SeiviceMethod</code> &#x5E76;&#x8FDB;&#x884C; &#x7F13;&#x5B58;&#x3002;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x7740;&#x91CD;&#x770B;&#x4E0B;&#x5982;&#x4F55;&#x6784;&#x9020; <code>SeiviceMethod</code> &#x5BF9;&#x8C61;&#x3002;<br><code>SeiviceMethod</code> &#x7C7B;&#x4F7F;&#x7528;<strong>Builder &#x6A21;&#x5F0F;</strong>&#x8FDB;&#x884C;&#x521B;&#x5EFA;&#x3002;&#x8BE5;&#x7C7B;&#x4E2D;&#x53EA;&#x6709;&#x4E24;&#x4E2A; public &#x65B9;&#x6CD5;&#xFF1A;SeiviceMethod.Builder &#x6784;&#x9020;&#x51FD;&#x6570;&#x548C; SeiviceMethod.Builder.build() &#x65B9;&#x6CD5;&#x3002;<br>&#x6784;&#x9020;&#x51FD;&#x6570;&#x53EA;&#x662F;&#x7B80;&#x5355;&#x7684;&#x8D4B;&#x503C;&#x8BED;&#x53E5;&#xFF0C;&#x4E0B;&#x9762;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD; <code>build&#xFF08;&#xFF09;</code> &#x65B9;&#x6CD5;&#x3002;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ServiceMethod <span class="title">build</span><span class="params">()</span> </span>{</span><br><span class="line">    callAdapter = createCallAdapter();</span><br><span class="line">    responseType = callAdapter.responseType();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// responseType &#x9519;&#x8BEF;&#x5224;&#x65AD;</span></span><br><span class="line">    <span class="comment">// responseType &#x4E0D;&#x80FD;&#x662F; retrofit2.Response &#x548C; okhttp3.Response</span></span><br><span class="line">   </span><br><span class="line">    responseConverter = createResponseConverter();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (Annotation annotation : methodAnnotations) {</span><br><span class="line">        parseMethodAnnotation(annotation);</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// httpMethod &#x9519;&#x8BEF;&#x5224;&#x65AD;</span></span><br><span class="line">    <span class="comment">// httpMethod &#x4E3A;&#x7A7A;&#xFF0C;&#x4E0D;&#x6307;&#x5B9A;&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;&#x60C5;&#x4F55;&#x4EE5;&#x582A; </span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// &#x6CA1;&#x6709;&#x8BF7;&#x6C42;&#x4F53;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x4F7F;&#x7528; @FormUrlEncoded &#x6216;&#x8005; @Multipart &#x6CE8;&#x89E3;&#x3002;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> parameterCount = parameterAnnotationsArray.length;</span><br><span class="line">    parameterHandlers = <span class="keyword">new</span> ParameterHandler&lt;?&gt;[parameterCount];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">0</span>; p &lt; parameterCount; p++) {</span><br><span class="line">        Type parameterType = parameterTypes[p];</span><br><span class="line">        <span class="keyword">if</span> (Utils.hasUnresolvableType(parameterType)) {</span><br><span class="line">            <span class="keyword">throw</span> parameterError(p, <span class="string">&quot;Parameter type must not include a type variable or wildcard: %s&quot;</span>,</span><br><span class="line">            parameterType);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        Annotation[] parameterAnnotations = parameterAnnotationsArray[p];</span><br><span class="line">        <span class="keyword">if</span> (parameterAnnotations == <span class="keyword">null</span>) {</span><br><span class="line">            <span class="keyword">throw</span> parameterError(p, <span class="string">&quot;No Retrofit annotation found.&quot;</span>);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        parameterHandlers[p] = parseParameter(p, parameterType, parameterAnnotations);</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// &#x6CE8;&#x89E3;&#x4F7F;&#x7528;&#x9519;&#x8BEF;&#x60C5;&#x51B5;&#x5224;&#x65AD;</span></span><br><span class="line">    <span class="comment">// 1&#x3001;&#x7F3A;&#x5C11; URL</span></span><br><span class="line">    <span class="comment">// 2&#x3001;&#x4E0D;&#x652F;&#x6301;&#x8BF7;&#x6C42;&#x4F53;&#x7684;&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;&#x5E26;&#x6709; @Body &#x6CE8;&#x89E3;</span></span><br><span class="line">    <span class="comment">// 3&#x3001;form encoded &#x65B9;&#x5F0F;&#x7F3A;&#x5C11;&#x8BF7;&#x6C42;&#x4F53;&#xFF0C;&#x5373;&#x7F3A;&#x5C11; @Field &#x6CE8;&#x89E3;</span></span><br><span class="line">    <span class="comment">// 4&#x3001;multipart &#x7F16;&#x7801;&#xFF0C;&#x7F3A;&#x5C11; @Part &#x6CE8;&#x89E3;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ServiceMethod&lt;&gt;(<span class="keyword">this</span>);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x6392;&#x9664;&#x6389;&#x9519;&#x8BEF;&#x6821;&#x9A8C;&#x90E8;&#x5206;&#xFF0C;&#x8BE5;&#x65B9;&#x6CD5;&#x5305;&#x542B;&#x4E86;&#x56DB;&#x4E2A;&#x90E8;&#x5206;&#xFF1A;</p>
+<ol>
+<li>&#x5904;&#x7406; <code>CallAdapter</code>&#xFF0C;&#x987A;&#x4FBF;&#x89E3;&#x6790; <code>responseType</code>&#x3002;</li>
+<li>&#x5904;&#x7406; <code>responseConverter</code>&#xFF0C;&#x7528;&#x4E8E;&#x5C06;&#x8FD4;&#x56DE;&#x6570;&#x636E;&#x89E3;&#x6790;&#x4E3A; <code>responseType</code> &#x7C7B;&#x578B;&#x3002;</li>
+<li>&#x5904;&#x7406;&#x65B9;&#x6CD5;&#x6CE8;&#x89E3;&#xFF0C;&#x89E3;&#x6790;&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;&#x3001;&#x7F16;&#x7801;&#x683C;&#x5F0F;&#x7B49;&#x65B9;&#x6CD5;&#x6CE8;&#x89E3;&#x3002;</li>
+<li>&#x5904;&#x7406;&#x53C2;&#x6570;&#x6CE8;&#x89E3;&#xFF0C;&#x6839;&#x636E;&#x53C2;&#x6570;&#x7C7B;&#x578B;&#x548C;&#x6CE8;&#x89E3;&#x4E3A;&#x6BCF;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x521B;&#x5EFA;&#x76F8;&#x5E94;&#x7684; <code>ParameterHandler</code>&#x3002;</li>
+</ol>
+<blockquote>
+<p>&#x4E3A;&#x4EC0;&#x4E48;&#x662F;&#x8FD9;&#x56DB;&#x4E2A;&#x90E8;&#x5206;&#xFF1F;<br>&#x6211;&#x4EEC;&#x518D;&#x770B;&#x4E00;&#x4E0B;&#x63A5;&#x53E3;&#x7684;&#x5B9A;&#x4E49;&#x3002;<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@GET</span>(<span class="string">&quot;users/{user}/repos&quot;</span>)</span><br><span class="line">Call&lt;List&lt;Repo&gt;&gt; <span class="function">listRepos</span>(<span class="variable">@Path</span>(<span class="string">&quot;user&quot;</span>) String user);</span><br></pre></td></tr></table></figure></p>
+<p>&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#x4E00;&#x5171;&#x5305;&#x542B;&#xFF1A;&#x65B9;&#x6CD5;&#x6CE8;&#x89E3;&#x3001;&#x8FD4;&#x56DE;&#x503C;Call&#x3001;&#x6CDB;&#x578B;&#x7C7B;&#x578B; List<list<respo>&gt;&#x3001;&#x53C2;&#x6570;&#x5217;&#x8868;&#xFF08;&#x53C2;&#x6570;&#x6CE8;&#x89E3;&#x548C;&#x53C2;&#x6570;&#x7C7B;&#x578B;&#xFF09;&#x3002;ServeiceMethod &#x5C31;&#x662F;&#x4E3A;&#x4E86;&#x89E3;&#x6790;&#x63A5;&#x53E3;&#x65B9;&#x6CD5;&#xFF0C;&#x4E5F;&#x5C31;&#x5BF9;&#x5E94;&#x4E86;&#x63A5;&#x53E3;&#x7684;&#x56DB;&#x4E2A;&#x90E8;&#x5206;&#x3002;</list<respo></p>
+</blockquote>
+<p>&#x4E0B;&#x9762;&#x4F9D;&#x6B21;&#x63A2;&#x7D22;&#x8FD9;&#x56DB;&#x4E2A;&#x90E8;&#x5206;&#x90FD;&#x662F;&#x5982;&#x4F55;&#x5904;&#x7406;&#x7684;&#x3002;</p>
+<h2 id="&#x5904;&#x7406;-calladapter"><a href="#&#x5904;&#x7406;-CallAdapter" class="headerlink" title="&#x5904;&#x7406; CallAdapter"></a>&#x5904;&#x7406; CallAdapter</h2><h3 id="&#x4EC0;&#x4E48;&#x662F;-calladapter"><a href="#&#x4EC0;&#x4E48;&#x662F;-CallAdapter" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F; CallAdapter"></a>&#x4EC0;&#x4E48;&#x662F; CallAdapter</h3><p><code>CallAdapter</code> &#x5305;&#x542B;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<ul>
+<li><code>Type responseType()</code> &#x8FD4;&#x56DE;&#x8BE5; CallAdapter &#x5904;&#x7406;&#x7684; response &#x7C7B;&#x578B;&#xFF0C;&#x8BE5;&#x7C7B;&#x578B;&#x662F;&#x6307; <code>Call&lt;List&lt;Repo&gt;&gt;</code> &#x4E2D;&#x7684; List<repo> &#x3002;</repo></li>
+<li><code>&lt;R&gt; T adapt(Call&lt;R&gt; call)</code> &#x5C06; <code>Call</code> &#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x4E3A; T &#x7C7B;&#x578B;&#xFF0C;&#x4E0D;&#x80FD;&#x5904;&#x7406;&#x7684;&#x7C7B;&#x578B;&#x8FD4;&#x56DE; null &#x3002;</li>
+</ul>
+<p><code>CallAdapter.Factory</code> &#x6839;&#x636E;&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#xFF08;Call<list<rspo>&gt;&#xFF09;&#x521B;&#x5EFA; <code>CallAdapter</code> &#x5B9E;&#x4F8B;&#x3002;<br>&#x81EA;&#x5B9A;&#x4E49; CallAdapter &#x9700;&#x8981;&#x7EE7;&#x627F;&#x81EA; CallAdapter.Factory&#x3002;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#x4E0D;&#x9700;&#x8981;&#x81EA;&#x5B9A;&#x4E49;&#x3002;</list<rspo></p>
+<h3 id="&#x5DF2;&#x652F;&#x6301;&#x7684;-calladapter"><a href="#&#x5DF2;&#x652F;&#x6301;&#x7684;-CallAdapter" class="headerlink" title="&#x5DF2;&#x652F;&#x6301;&#x7684; CallAdapter"></a>&#x5DF2;&#x652F;&#x6301;&#x7684; CallAdapter</h3><ul>
+<li>RxJava</li>
+<li>Java8</li>
+<li>Guava</li>
+</ul>
+<h3 id="calladapter-&#x4ECE;&#x54EA;&#x6765;"><a href="#CallAdapter-&#x4ECE;&#x54EA;&#x6765;" class="headerlink" title="CallAdapter &#x4ECE;&#x54EA;&#x6765;"></a>CallAdapter &#x4ECE;&#x54EA;&#x6765;</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#x5220;&#x9664;&#x90E8;&#x5206;&#x6821;&#x9A8C;&#x4EE3;&#x7801;</span></span><br><span class="line"><span class="keyword">private</span> CallAdapter&lt;?&gt; createCallAdapter() {</span><br><span class="line">    Type returnType = method.getGenericReturnType();</span><br><span class="line">    Annotation[] annotations = method.getAnnotations();</span><br><span class="line">    <span class="keyword">return</span> retrofit.callAdapter(returnType, annotations);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> CallAdapter&lt;?&gt; callAdapter(Type returnType, Annotation[] annotations){</span><br><span class="line">    <span class="keyword">return</span> nextCallAdapter(<span class="keyword">null</span>, returnType, annotations);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> CallAdapter&lt;?&gt; nextCallAdapter(CallAdapter.Factory skipPast, Type returnType, Annotation[] annotations) {</span><br><span class="line">    <span class="keyword">int</span> start = adapterFactories.indexOf(skipPast) + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = start, count = adapterFactories.size(); i &lt; count; i++) {</span><br><span class="line">      CallAdapter&lt;?&gt; adapter = adapterFactories.get(i).get(returnType, annotations, <span class="keyword">this</span>);</span><br><span class="line">      <span class="keyword">if</span> (adapter != <span class="keyword">null</span>) {</span><br><span class="line">        <span class="keyword">return</span> adapter;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// &#x5982;&#x679C;&#x672A;&#x627E;&#x5230;&#x53EF;&#x4EE5;&#x5904;&#x7406;&#x8BE5;&#x8FD4;&#x56DE;&#x7C7B;&#x578B;&#x7684; CallAdapter &#xFF0C;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x3002;</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x4EE5;&#x4E0A;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x901A;&#x8FC7;&#x904D;&#x5386; <code>Retrofit</code> &#x4E2D;&#x7684; <code>adapterFactories</code> &#x627E;&#x5230;&#x7B2C;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x5904;&#x7406;&#x8BE5;&#x8FD4;&#x56DE;&#x503C;&#x7684; <code>CallAdapter</code> &#x3002;</p>
+<blockquote>
+<p>&#x5F53;&#x63A5;&#x53E3;&#x8FD4;&#x56DE; Call&lt;?&gt; &#x65F6;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x8BBE;&#x7F6E; CallAdapter&#x3002;&#x6B64;&#x65F6;&#xFF0C;&#x662F;&#x5982;&#x4F55;&#x5904;&#x7406;&#x7684;&#xFF1F;<br>Retrofit.Builder.build() &#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;<code>adapterFactories.add(platform.defaultCallAdapterFactory(callbackExecutor))</code> &#x6DFB;&#x52A0;&#x4E86;&#x9ED8;&#x8BA4;&#x7684; <code>CallAdapter</code>&#x3002;&#x5BF9;&#x4E8E; Android &#x5E73;&#x53F0;&#x800C;&#x8A00;&#xFF0C;&#x9ED8;&#x8BA4;&#x7684; Executor &#x662F; <code>Platform.Android.MainThreadExecutor</code>&#xFF0C;&#x9ED8;&#x8BA4;&#x7684; CallAdapter.Factory &#x662F; <code>ExecutorCallAdapterFactory</code>&#x3002;</p>
+</blockquote>
+<h2 id="&#x5904;&#x7406;-response-converter"><a href="#&#x5904;&#x7406;-Response-Converter" class="headerlink" title="&#x5904;&#x7406; Response Converter"></a>&#x5904;&#x7406; Response Converter</h2><p>&#x6CE8;&#x610F;&#xFF0C;&#x6B64;&#x5904;&#x7684; Converter &#x662F;&#x6307;&#x7528;&#x4E8E;&#x89E3;&#x6790;&#x8FD4;&#x56DE;&#x6570;&#x636E;&#x7684; Response Converter&#x3002;&#x4E4B;&#x540E;&#x8FD8;&#x6709;&#x7528;&#x4E8E;&#x5904;&#x7406; Service Method &#x53C2;&#x6570;&#x7684; Converter&#x3002;</p>
+<h3 id="&#x4EC0;&#x4E48;&#x662F;-converter"><a href="#&#x4EC0;&#x4E48;&#x662F;-Converter" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F; Converter"></a>&#x4EC0;&#x4E48;&#x662F; Converter</h3><p><code>Converter</code> &#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5; <code>T convert(F value) throws IOException</code>&#x3002;&#x7528;&#x4E8E;&#x5C06; Http &#x8BF7;&#x6C42;&#x4E2D;&#x7684; <strong>&#x8BF7;&#x6C42;&#x53C2;&#x6570;</strong> &#x548C; <strong>&#x8FD4;&#x56DE;&#x6570;&#x636E;</strong> &#x8F6C;&#x6362;&#x4E3A;&#x76F8;&#x5E94;&#x7684;&#x7C7B;&#x578B;&#x3002;</p>
+<p>&#x81EA;&#x5B9A;&#x4E49;<code>Converter</code>&#x9700;&#x8981;&#x7EE7;&#x627F;<code>Converter.Factory</code>&#x3002;<code>Factory</code> &#x5171;&#x6709;&#x4E09;&#x4E2A;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<ul>
+<li><p><code>Converter&lt;ResponseBody, ?&gt; responseBodyConverter(...)</code><br>&#x7528;&#x4E8E;&#x5C06;&#x8FD4;&#x56DE;&#x6570;&#x636E;&#x8F6C;&#x6362;&#x4E3A;&#x76F8;&#x5E94;&#x7C7B;&#x578B;&#xFF0C;&#x4E0D;&#x80FD;&#x5904;&#x7406;&#x8FD4;&#x56DE; null &#x3002;</p>
+</li>
+<li><p><code>Converter&lt;?, RequestBody&gt; requestBodyConverter(...)</code><br>&#x7528;&#x4E8E;&#x5C06;&#x8BF7;&#x6C42;&#x6570;&#x636E;&#x4E2D;&#x4F7F;&#x7528; <code>Body</code>,<code>Part</code>,<code>PartMap</code> &#x6CE8;&#x89E3;&#x7684;&#x53C2;&#x6570;&#x8F6C;&#x6362;&#x4E3A; <code>RequestBody</code>&#x3002;</p>
+</li>
+<li><p><code>Converter&lt;?, String&gt; stringConverter(...)</code><br>&#x7528;&#x4E8E;&#x5C06;&#x8BF7;&#x6C42;&#x6570;&#x636E;&#x4E2D;&#x4F7F;&#x7528; <code>Field</code>,<code>FieldMap</code>,<code>Header</code>,<code>Path</code>,<code>Query</code>,<code>QueryMap</code>&#x6CE8;&#x89E3;&#x7684;&#x53C2;&#x6570;&#x8F6C;&#x6362;&#x4E3A;<code>Stirng</code>&#x3002;</p>
+</li>
+</ul>
+<h3 id="buildinconverters"><a href="#BuildInConverters" class="headerlink" title="BuildInConverters"></a>BuildInConverters</h3><ul>
+<li><p>&#x8FD4;&#x56DE;&#x6570;&#x636E;&#x8F6C;&#x6362;<br>&#x4EC5;&#x652F;&#x6301; <code>ResponseBody</code> &#x548C; <code>Void</code> &#x7C7B;&#x578B;&#x3002;&#x5176;&#x4E2D;&#xFF0C;&#x8F6C;&#x6362;&#x7C7B;&#x578B;&#x4E3A;<code>ResponseBody</code>&#x65F6;&#xFF0C;&#x6839;&#x636E;&#x662F;&#x5426;&#x5B58;&#x5728;&#x65B9;&#x6CD5;&#x6CE8;&#x89E3; <code>Streaming</code>&#xFF0C;&#x8FD4;&#x56DE; &#x975E; Buffer &#x7684; <code>ResponseBody</code> &#x548C; Buffer &#x7684; <code>ResponseBody</code>&#x3002;</p>
+</li>
+<li><p><code>Body</code>,<code>Part</code>,<code>PartMap</code> &#x6CE8;&#x89E3;&#x8F6C;&#x6362;<br>&#x4EC5;&#x652F;&#x6301; <code>RequestBody</code> -&gt; <code>RequestBody</code> &#x7C7B;&#x578B;&#x3002;</p>
+</li>
+<li><p><code>Field</code>,<code>FieldMap</code>,<code>Header</code>,<code>Path</code>,<code>Query</code>,<code>QueryMap</code> &#x6CE8;&#x89E3;&#x8F6C;&#x6362;&#x4EC5;&#x652F;&#x6301; <code>String</code> -&gt; <code>String</code> &#x7C7B;&#x578B;&#x3002;</p>
+</li>
+</ul>
+<h3 id="&#x5DF2;&#x652F;&#x6301;&#x7684;-converter"><a href="#&#x5DF2;&#x652F;&#x6301;&#x7684;-Converter" class="headerlink" title="&#x5DF2;&#x652F;&#x6301;&#x7684; Converter"></a>&#x5DF2;&#x652F;&#x6301;&#x7684; Converter</h3><ul>
+<li>&#x7528;&#x4E8E;&#x5C06; <code>String</code>&#xFF0C;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x53CA;&#x5176;&#x5305;&#x88C5;&#x7C7B;&#x8F6C;&#x6362;&#x4E3A;<code>text/plain</code>&#x7684; <code>ScalarsConverterFactory</code>&#x3002;</li>
+<li>&#x4F7F;&#x7528; <code>Gson</code> &#x7684; <code>GsonConverterFactory</code>&#x3002;</li>
+<li>&#x4F7F;&#x7528; <code>Jackson</code> &#x7684; <code>JacksonConverterFactory</code>&#x3002; </li>
+<li>&#x4F7F;&#x7528; <code>Moshi</code> &#x7684; <code>MoshiConverterFactory</code>&#x3002;</li>
+<li>&#x4F7F;&#x7528; <code>Protocol Buffer</code> &#x7684; <code>ProtoConverterFactory</code>&#x3002;</li>
+<li>&#x4F7F;&#x7528; <code>Simple</code> &#x89E3;&#x6790; xml &#x7684; <code>SimpleXmlConverterFactory</code>&#x3002;</li>
+<li>&#x4F7F;&#x7528; <code>Wire</code> &#x89E3;&#x6790; Protocol Buffer &#x7684; <code>WireConverterFactory</code>&#x3002;</li>
+</ul>
+<h3 id="response-converter-&#x4ECE;&#x54EA;&#x6765;"><a href="#Response-Converter-&#x4ECE;&#x54EA;&#x6765;" class="headerlink" title="Response Converter &#x4ECE;&#x54EA;&#x6765;"></a>Response Converter &#x4ECE;&#x54EA;&#x6765;</h3><p><code>Converter</code> &#x5904;&#x7406;&#x4E0E; <code>CallAdapter</code> &#x7C7B;&#x4F3C;&#x3002;&#x904D;&#x5386; <code>Retrofit.converterFactories</code> &#x5BFB;&#x627E;&#x7B2C;&#x4E00;&#x4E2A;&#x80FD;&#x591F;&#x5904;&#x7406;&#x8BE5; response &#x7C7B;&#x578B;&#x7684; <code>Converter</code> &#x3002;</p>
+<blockquote>
+<p>&#x4E3A;&#x4EC0;&#x4E48;&#x4F7F;&#x7528; json converter&#xFF0C;&#x5982; Gson&#x3001;Jackson &#x65F6;&#xFF0C;&#x9700;&#x8981;&#x6700;&#x540E;&#x6DFB;&#x52A0;&#x8BE5; Converter?<br>&#x5BF9;&#x4E8E; Json &#x6570;&#x683C;&#x5F0F;&#x800C;&#x8A00;&#xFF0C;GsonConverter &#x65E0;&#x6CD5;&#x5224;&#x65AD;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x5904;&#x7406;&#x8BE5; Response &#x3002;responseBodyConverter() &#x65B9;&#x6CD5;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x6C38;&#x8FDC;&#x4E0D;&#x4E3A; null&#x3002;&#x5982;&#x679C; GsonConverter &#x4E0D;&#x662F;&#x6700;&#x540E;&#x6DFB;&#x52A0;&#x7684;&#x8BDD;&#xFF0C;&#x5176;&#x4ED6;&#x7684; Converter &#x6C38;&#x8FDC;&#x6CA1;&#x6709;&#x673A;&#x4F1A;&#x5904;&#x7406;&#x8BE5; Response&#xFF0C;&#x54EA;&#x6015; GsonConverter &#x4E0D;&#x80FD;&#x5904;&#x7406;&#x8BE5; Response &#x3002;</p>
+</blockquote>
+<h2 id="&#x5904;&#x7406;&#x65B9;&#x6CD5;&#x6CE8;&#x89E3;"><a href="#&#x5904;&#x7406;&#x65B9;&#x6CD5;&#x6CE8;&#x89E3;" class="headerlink" title="&#x5904;&#x7406;&#x65B9;&#x6CD5;&#x6CE8;&#x89E3;"></a>&#x5904;&#x7406;&#x65B9;&#x6CD5;&#x6CE8;&#x89E3;</h2><p>&#x65B9;&#x6CD5;&#x6CE8;&#x89E3;&#x5305;&#x62EC; Http &#x8BF7;&#x6C42;&#x65B9;&#x5F0F;&#x3001;&#x8BF7;&#x6C42;&#x5730;&#x5740;&#x3001;&#x8BF7;&#x6C42;&#x5934;&#x3002;</p>
+<h2 id="&#x5904;&#x7406;&#x53C2;&#x6570;&#x6CE8;&#x89E3;"><a href="#&#x5904;&#x7406;&#x53C2;&#x6570;&#x6CE8;&#x89E3;" class="headerlink" title="&#x5904;&#x7406;&#x53C2;&#x6570;&#x6CE8;&#x89E3;"></a>&#x5904;&#x7406;&#x53C2;&#x6570;&#x6CE8;&#x89E3;</h2><p>&#x6309;&#x7167;&#x53C2;&#x6570;&#x987A;&#x5E8F;&#xFF0C;&#x6839;&#x636E;&#x53C2;&#x6570;&#x6CE8;&#x89E3;&#xFF0C;&#x4E3A;&#x6BCF;&#x4E2A;&#x53C2;&#x6570;&#x6784;&#x9020;&#x76F8;&#x5E94;&#x7684; <code>ParameterHandler</code>&#xFF0C;&#x4FDD;&#x5B58;&#x5728;&#x6570;&#x7EC4; <code>parameterHandlers</code> &#x5F53;&#x4E2D;&#x3002;<br><code>ParameterHandler</code> &#x7528;&#x4E8E;&#x5C06;&#x5904;&#x7406;&#x63A5;&#x53E3;&#x53C2;&#x6570;&#xFF0C;&#x5E76;&#x5C06;&#x53C2;&#x6570;&#x6DFB;&#x52A0;&#x5230;&#x5230;&#x8BF7;&#x6C42;&#x76F8;&#x5E94;&#x90E8;&#x5206;&#x5F53;&#x4E2D;&#x3002;</p>
+<blockquote>
+<p>&#x53C2;&#x6570;&#x6CE8;&#x89E3;&#x6709;&#x4E14;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A;&#x3002;</p>
+</blockquote>
+<ul>
+<li>@Url<br>&#x6CE8;&#x89E3;&#x4F7F;&#x7528; <code>ParameterHandler.RelativeUrl</code> &#x5B9E;&#x4F8B;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;&#x4E14;&#x53C2;&#x6570;&#x7C7B;&#x578B;&#x5FC5;&#x987B;&#x4E3A; <code>okhttp3.HttpUrl</code>&#xFF0C;<code>String</code>&#xFF0C;<code>java.net.URI</code>&#xFF0C;<code>android.net.Uri</code>&#x5176;&#x4E2D;&#x4E4B;&#x4E00;&#x3002;</li>
+<li>@Path<br>&#x6CE8;&#x89E3;&#x4F7F;&#x7528; <code>ParameterHandler.Path</code> &#x5B9E;&#x4F8B;&#x8FDB;&#x884C;&#x5904;&#x7406;&#x3002;&#x5177;&#x4F53;&#x6765;&#x8BF4;&#xFF0C;&#x9996;&#x5148;&#x5728; <code>Retrofit.converterFactories</code> &#x4E2D;&#x5BFB;&#x627E;&#x80FD;&#x591F;&#x5904;&#x7406;&#x8BE5;&#x53C2;&#x6570;&#x7C7B;&#x578B;&#x7684; Converter &#xFF0C;&#x5373; <code>Converter.Facyory.stringConverter(...)</code> &#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x503C;&#x4E0D;&#x4E3A; null &#x3002;&#x5982;&#x679C;&#x672A;&#x627E;&#x5230;&#x76F8;&#x5E94;&#x7684; Converter&#xFF0C;&#x5C31;&#x4F7F;&#x7528; <code>BuiltInConverters.ToStringConverter</code>&#xFF0C;&#x4EC5;&#x8C03;&#x7528;&#x53C2;&#x6570;&#x7684; <code>toString()</code> &#x65B9;&#x6CD5;&#x3002;</li>
+<li>@Query</li>
+<li>@QueryMap</li>
+<li>@Header</li>
+<li>@Field</li>
+<li>@FieldMap</li>
+<li>@Part</li>
+<li>@PartMap</li>
+<li>@Body</li>
+</ul>
+<h1 id="&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x89E3;&#x6790;&#x6570;&#x636E;&#x56DE;&#x8C03;"><a href="#&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#xFF0C;&#x89E3;&#x6790;&#x6570;&#x636E;&#xFF0C;&#x56DE;&#x8C03;" class="headerlink" title="&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#xFF0C;&#x89E3;&#x6790;&#x6570;&#x636E;&#xFF0C;&#x56DE;&#x8C03;"></a>&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#xFF0C;&#x89E3;&#x6790;&#x6570;&#x636E;&#xFF0C;&#x56DE;&#x8C03;</h1><p><code>ServiceMethod</code> &#x5BF9;&#x8C61;&#x5305;&#x542B;&#x4E86;&#x6784;&#x9020; Http &#x8BF7;&#x6C42;&#x7684;&#x6240;&#x6709;&#x4FE1;&#x606F;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x4E9B;&#x4FE1;&#x606F;&#x662F;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x7684;&#x5462;&#xFF1F;&#x8BA9;&#x6211;&#x4EEC;&#x91CD;&#x65B0;&#x56DE;&#x5230; <code>Retrofit.create()</code> &#x65B9;&#x6CD5;&#x3002;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OkHttpCall okHttpCall = <span class="keyword">new</span> OkHttpCall&lt;&gt;(serviceMethod, args);</span><br><span class="line"><span class="keyword">return</span> serviceMethod.callAdapter.adapt(okHttpCall);</span><br></pre></td></tr></table></figure></p>
+<p>&#x4F7F;&#x7528; <code>ServiceMethod</code> &#x548C; Service Mehtod &#x53C2;&#x6570;&#x6784;&#x9020; OkHttpCall&#x3002;OkHttpCall &#x5C31;&#x662F; Retrofit2 &#x4E2D;&#x53D1;&#x9001;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x4F46;&#x662F;&#xFF0C;Retrofit2 &#x7684;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x90E8;&#x5206;&#x662F;&#x7531; okhttp3.Call &#x5904;&#x7406;&#x7684;&#x3002;</p>
+<h2 id="&#x6784;&#x9020;-okhttpcall&#x521B;&#x5EFA;-okhttp3call"><a href="#&#x6784;&#x9020;-OkHttpCall&#xFF0C;&#x521B;&#x5EFA;-okhttp3-Call" class="headerlink" title="&#x6784;&#x9020; OkHttpCall&#xFF0C;&#x521B;&#x5EFA; okhttp3.Call"></a>&#x6784;&#x9020; OkHttpCall&#xFF0C;&#x521B;&#x5EFA; okhttp3.Call</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> okhttp3.<span class="function">Call <span class="title">createRawCall</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>{</span><br><span class="line">    Request request = serviceMethod.toRequest(args);</span><br><span class="line">    okhttp3.Call call = serviceMethod.callFactory.newCall(request);</span><br><span class="line">    <span class="keyword">if</span> (call == <span class="keyword">null</span>) {</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;Call.Factory returned null.&quot;</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> call;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>okhttp3.Call &#x7684;&#x521B;&#x5EFA;&#x5206;&#x4E3A;&#x4E24;&#x6B65;&#xFF1A;&#x6784;&#x9020; okhttp3.Request &#x3001;&#x6784;&#x9020; okhttp3.Call &#x3002;<br>okhttp3.Request &#x8F6C;&#x6362;&#x4E3A; okhttp3.Call &#x7684;&#x8FC7;&#x7A0B;&#x7531; okhttp3.Call.Factory &#xFF0C;&#x5373; OkHttpClient &#x5B8C;&#x6210;&#xFF0C;&#x4E0D;&#x518D;&#x7EE7;&#x7EED;&#x6DF1;&#x7A76;&#x3002;&#x4E0B;&#x9762;&#x8BE6;&#x7EC6;&#x770B;&#x4E0B;&#x5982;&#x4F55;&#x751F;&#x6210; okhttp3.Request &#x3002;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Request <span class="title">toRequest</span><span class="params">(Object... args)</span> <span class="keyword">throws</span> IOException </span>{</span><br><span class="line">    RequestBuilder requestBuilder = <span class="keyword">new</span> RequestBuilder(httpMethod, baseUrl, relativeUrl, headers,</span><br><span class="line">        contentType, hasBody, isFormEncoded, isMultipart);</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@SuppressWarnings</span>(<span class="string">&quot;unchecked&quot;</span>) <span class="comment">// It is an error to invoke a method with the wrong arg types.</span></span><br><span class="line">    ParameterHandler&lt;Object&gt;[] handlers = (ParameterHandler&lt;Object&gt;[]) parameterHandlers;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">0</span>; p &lt; argumentCount; p++) {</span><br><span class="line">      handlers[p].apply(requestBuilder, args[p]);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> requestBuilder.build();</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p>ServiceMethod &#x4F7F;&#x7528; RequestBuilder &#x5C06;&#x4E4B;&#x524D;&#x5DF2;&#x7ECF;&#x89E3;&#x6790;&#x8FC7;&#x7684;&#x63A5;&#x53E3;&#x4FE1;&#x606F;&#x7EC4;&#x88C5;&#x4E3A; Request&#x3002;</p>
+<h2 id="&#x5BF9;-okhttpcall-&#x8FDB;&#x884C;&#x9002;&#x914D;"><a href="#&#x5BF9;-OkHttpCall-&#x8FDB;&#x884C;&#x9002;&#x914D;" class="headerlink" title="&#x5BF9; OkHttpCall &#x8FDB;&#x884C;&#x9002;&#x914D;"></a>&#x5BF9; OkHttpCall &#x8FDB;&#x884C;&#x9002;&#x914D;</h2><p>&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x77E5;&#x9053; CallAdapter &#x7684;&#x4F5C;&#x7528;&#x662F;&#x5C06; Call&#xFF08;OkHttpCall&#xFF09; &#x5BF9;&#x8C61;&#x8F6C;&#x6362;&#x4E3A;&#x5176;&#x4ED6;&#x7C7B;&#x578B;&#x3002;<br>Android &#x5E73;&#x53F0;&#x4E0B;&#xFF0C;&#x9ED8;&#x8BA4;&#x7684;&#x8F6C;&#x6362;&#x540E;&#x7684;&#x7C7B;&#x578B;&#x4E3A; <code>ExecutorCallAdapterFactory.ExecutorCallbackCall</code>&#x3002;<br><code>ExecutorCallbackCall</code> &#x6784;&#x9020;&#x51FD;&#x6570; <code>ExecutorCallbackCall(Executor callbackExecutor, Call&lt;T&gt; delegate)</code> &#x3002;&#x5176;&#x5185;&#x90E8;&#x65B9;&#x6CD5;&#x9664;&#x4E86; <code>enqueue(...)</code> &#x65B9;&#x6CD5;&#xFF0C;&#x5176;&#x4ED6;&#x5168;&#x90E8;&#x76F4;&#x63A5;&#x8C03;&#x7528; <code>delegate</code> &#x65B9;&#x6CD5;&#x3002;&#x7740;&#x91CD;&#x770B;&#x4E00;&#x4E0B; <code>enqueue(...)</code> &#x65B9;&#x6CD5;&#x3002;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@Override</span> </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(<span class="keyword">final</span> Callback&lt;T&gt; callback)</span> </span>{</span><br><span class="line">  <span class="keyword">if</span> (callback == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;callback == null&quot;</span>);</span><br><span class="line"></span><br><span class="line">  delegate.enqueue(<span class="keyword">new</span> Callback&lt;T&gt;() {</span><br><span class="line">    <span class="annotation">@Override</span> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call&lt;T&gt; call, <span class="keyword">final</span> Response&lt;T&gt; response)</span> </span>{</span><br><span class="line">      callbackExecutor.execute(<span class="keyword">new</span> Runnable() {</span><br><span class="line">        <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{</span><br><span class="line">          <span class="keyword">if</span> (delegate.isCanceled()) {</span><br><span class="line">            <span class="comment">// Emulate OkHttp&apos;s behavior of throwing/delivering an IOException on cancellation.</span></span><br><span class="line">            callback.onFailure(ExecutorCallbackCall.<span class="keyword">this</span>, <span class="keyword">new</span> IOException(<span class="string">&quot;Canceled&quot;</span>));</span><br><span class="line">          } <span class="keyword">else</span> {</span><br><span class="line">            callback.onResponse(ExecutorCallbackCall.<span class="keyword">this</span>, response);</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      });</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call&lt;T&gt; call, <span class="keyword">final</span> Throwable t)</span> </span>{</span><br><span class="line">      callbackExecutor.execute(<span class="keyword">new</span> Runnable() {</span><br><span class="line">        <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{</span><br><span class="line">          callback.onFailure(ExecutorCallbackCall.<span class="keyword">this</span>, t);</span><br><span class="line">        }</span><br><span class="line">      });</span><br><span class="line">    }</span><br><span class="line">  });</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p><code>ExecutorCallbackCall.enqueue</code> &#x4F7F;&#x7528; <code>callbackExecutor</code> &#x6267;&#x884C; <code>callback</code>&#x3002;&#x6240;&#x4EE5;&#x8BF4;&#xFF0C;<code>callback</code> &#x6267;&#x884C;&#x7EBF;&#x7A0B;&#x4E3A; Android &#x4E3B;&#x7EBF;&#x7A0B;&#x3002;</p>
+<blockquote>
+<p>CallbackExecutor &#x53EA;&#x5BF9;&#x8FD4;&#x56DE;&#x503C;&#x4E3A; Call&lt;?&gt; &#x7684;  Service Method &#x6709;&#x4F5C;&#x7528;&#xFF0C;&#x5BF9;&#x81EA;&#x5B9A;&#x4E49;&#x8FD4;&#x56DE;&#x503C;&#x7C7B;&#x578B;&#x65E0;&#x6548;&#x3002;</p>
+</blockquote>
+<h2 id="&#x53D1;&#x9001;&#x8BF7;&#x6C42;"><a href="#&#x53D1;&#x9001;&#x8BF7;&#x6C42;" class="headerlink" title="&#x53D1;&#x9001;&#x8BF7;&#x6C42;"></a>&#x53D1;&#x9001;&#x8BF7;&#x6C42;</h2><p>&#x6839;&#x636E;&#x4EE5;&#x4E0A;&#x5206;&#x6790;&#x53EF;&#x77E5;&#xFF0C;<code>Call&lt;List&lt;Repo&gt;&gt; call = service.listRepos(&quot;octocat&quot;)</code> &#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x503C;&#x5B9E;&#x9645;&#x4E3A; <code>ExecutorCallbackCall</code> &#x5BF9;&#x8C61;&#x3002;&#x5F53;&#x6267;&#x884C; <code>call.enqueue</code> &#x65F6;&#xFF0C;&#x8C03;&#x7528; <code>OkHttpCall.enqueue(...)</code> &#x65B9;&#x6CD5;&#xFF0C;&#x8FDB;&#x4E00;&#x6B65;&#x8C03;&#x7528;  <code>okhttp.Call.enqueue(new okhttp3.Callback())</code> &#x53D1;&#x9001;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x3002;</p>
+<h2 id="&#x89E3;&#x6790;&#x8FD4;&#x56DE;&#x6570;&#x636E;"><a href="#&#x89E3;&#x6790;&#x8FD4;&#x56DE;&#x6570;&#x636E;" class="headerlink" title="&#x89E3;&#x6790;&#x8FD4;&#x56DE;&#x6570;&#x636E;"></a>&#x89E3;&#x6790;&#x8FD4;&#x56DE;&#x6570;&#x636E;</h2><p><code>OkHttpCall.parseResponse()</code> &#x65B9;&#x6CD5;&#x8D1F;&#x8D23;&#x8FD4;&#x56DE;&#x6570;&#x636E;&#x7684;&#x89E3;&#x6790;&#x3002;&#x6B64;&#x65B9;&#x6CD5;&#x5185;&#x90E8;&#x8C03;&#x7528; <code>ServiceMethod.toResponse(...)</code> &#x89E3;&#x6790;&#x8FD4;&#x56DE;&#x6570;&#x636E;&#x3002;</p>
+<h1 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h1><p>Retrofit2 &#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x5904;&#x7406;&#x5206;&#x4E3A;&#x56DB;&#x4E2A;&#x9636;&#x6BB5;&#xFF1A;</p>
+<ol>
+<li>&#x89E3;&#x6790; ServiceMethod &#x6784;&#x9020; <code>ServiceMethod</code> &#x5BF9;&#x8C61;&#x3002;&#x8FD9;&#x662F; Retrofit2 &#x6700;&#x590D;&#x6742;&#x7684;&#x90E8;&#x5206;&#x3002;<br>&#x2460; &#x89E3;&#x6790;Http&#x8BF7;&#x6C42;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#xFF0C;&#x5982;&#xFF1A;&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;&#x3001;&#x5934;&#x4FE1;&#x606F;&#x3001;&#x63A5;&#x53E3;&#x5730;&#x5740;&#xFF0C;&#x8BF7;&#x6C42;&#x4F53;&#x7F16;&#x7801;&#x683C;&#x5F0F;&#x3002;<br>&#x2462; &#x5BFB;&#x627E;&#x80FD;&#x591F;&#x5904;&#x7406;&#x8FD4;&#x56DE;&#x7C7B;&#x578B;&#x7684; Converter&#x3002;<br>&#x2461; &#x5BFB;&#x627E;&#x80FD;&#x591F;&#x5904;&#x7406;&#x53C2;&#x6570;&#x7C7B;&#x578B;&#x7684; Converter&#x3002;<br>&#x2463; &#x5BFB;&#x627E;&#x80FD;&#x591F;&#x5904;&#x7406; Service Method &#x8FD4;&#x56DE;&#x503C;&#x7684; CallAdapter&#x3002;</li>
+<li>&#x4F7F;&#x7528; ServiceMethod &#x6784;&#x9020; okhttp3.Call&#xFF0C;&#x5E76;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#x3002;</li>
+<li>&#x4F7F;&#x7528; <code>ServiceMethod.responseConverter</code> &#x89E3;&#x6790;&#x8FD4;&#x56DE;&#x6570;&#x636E;</li>
+<li>&#x8FDB;&#x884C;&#x56DE;&#x8C03;</li>
+</ol>
+<h1 id="&#x6536;&#x83B7;"><a href="#&#x6536;&#x83B7;" class="headerlink" title="&#x6536;&#x83B7;"></a>&#x6536;&#x83B7;</h1><h2 id="bulider-&#x6A21;&#x5F0F;&#x4E0E;-factory-&#x6A21;&#x5F0F;&#x7684;&#x5F02;&#x540C;"><a href="#Bulider-&#x6A21;&#x5F0F;&#x4E0E;-Factory-&#x6A21;&#x5F0F;&#x7684;&#x5F02;&#x540C;" class="headerlink" title="Bulider &#x6A21;&#x5F0F;&#x4E0E; Factory &#x6A21;&#x5F0F;&#x7684;&#x5F02;&#x540C;"></a>Bulider &#x6A21;&#x5F0F;&#x4E0E; Factory &#x6A21;&#x5F0F;&#x7684;&#x5F02;&#x540C;</h2><ul>
+<li>&#x90FD;&#x7528;&#x4E8E;&#x7B80;&#x5316;&#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x8FC7;&#x7A0B;&#xFF0C;&#x63D0;&#x9AD8;&#x4EE3;&#x7801;&#x7684;&#x53EF;&#x8BFB;&#x6027;&#x3002;</li>
+<li>Builder &#x6A21;&#x5F0F;&#x9700;&#x8981;&#x4E86;&#x89E3;&#x5BF9;&#x8C61;&#x6784;&#x5EFA;&#x7684;&#x7EC6;&#x8282;&#xFF0C;&#x9002;&#x7528;&#x4E8E;&#x53EF;&#x9009;&#x53C2;&#x6570;&#x8FC7;&#x591A;&#x7684;&#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x3002;</li>
+<li>Factory &#x6A21;&#x5F0F;&#x4E0D;&#x9700;&#x8981;&#x4E86;&#x89E3;&#x5BF9;&#x8C61;&#x7684;&#x521B;&#x5EFA;&#x7EC6;&#x8282;&#xFF0C;&#x4EC5;&#x9700;&#x8981;&#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x7684;&#x201C;&#x7279;&#x5F81;&#x63CF;&#x8FF0;&#x201D;&#x3002;<br>&#x4EE5; <code>Retrofit</code> &#x548C; <code>Converter</code> &#x7684;&#x521B;&#x5EFA;&#x4E3A;&#x4F8B;&#x3002;<br>&#x521B;&#x5EFA; <code>Retrofit</code> &#x5BF9;&#x8C61;&#xFF0C;&#x9700;&#x8981; url&#xFF0C;CallAdapter &#x7B49;&#x591A;&#x4E2A;&#x53EF;&#x9009;&#x5BF9;&#x8C61;&#x3002;&#x5982;&#x679C;&#x76F4;&#x63A5;&#x4F7F;&#x7528; new &#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x7684;&#x8BDD;&#xFF0C;&#x53C2;&#x6570;&#x5217;&#x8868;&#x8F83;&#x591A;&#xFF0C;&#x800C;&#x4E14;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x591A;&#x4E2A;&#x53C2;&#x6570;&#x4E3A; null  &#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5927;&#x5927;&#x5F71;&#x54CD;&#x4EE3;&#x7801;&#x7684;&#x53EF;&#x8BFB;&#x6027;&#x3002;&#x76F8;&#x53CD;&#xFF0C;&#x4F7F;&#x7528; Builder &#x6A21;&#x5F0F;&#xFF0C;&#x53EF;&#x4EE5;&#x91C7;&#x7528;&#x94FE;&#x5F0F;&#x8C03;&#x7528;&#xFF0C;&#x9009;&#x62E9;&#x6027;&#x5730;&#x4F20;&#x9012;&#x9700;&#x8981;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x4FDD;&#x6301;&#x4EE3;&#x7801;&#x7684;&#x7B80;&#x5355;&#x548C;&#x4F18;&#x96C5;&#x3002;<br>&#x5BF9;&#x4E8E; <code>Converter</code> &#x5BF9;&#x8C61;&#xFF0C;&#x4F7F;&#x7528;&#x8005;&#x4E0D;&#x9700;&#x8981;&#x4E86;&#x89E3;&#x5176;&#x521B;&#x5EFA;&#x7EC6;&#x8282;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x544A;&#x8BC9; Factory &#xFF0C;&#x81EA;&#x5DF1;&#x9700;&#x8981;&#x4EC0;&#x4E48;&#x7C7B;&#x578B;&#x7684; Converter &#x5C31;&#x884C;&#x3002;&#x5982;&#xFF0C;<code>Factory.requestBodyConverter()</code> &#x8868;&#x660E;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x5C06;&#x67D0;&#x79CD;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x4E3A; <code>RequestBody</code> &#x7684;&#x8F6C;&#x6362;&#x5668;&#x3002;</li>
+</ul>
+<h2 id="java-&#x7C7B;&#x578B;&#x5904;&#x7406;"><a href="#Java-&#x7C7B;&#x578B;&#x5904;&#x7406;" class="headerlink" title="Java &#x7C7B;&#x578B;&#x5904;&#x7406;"></a>Java &#x7C7B;&#x578B;&#x5904;&#x7406;</h2><p>retrofit2.Utils &#x4E2D;&#x6709;&#x5927;&#x91CF;&#x7684;&#x5DE5;&#x5177;&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x5904;&#x7406;&#x7C7B;&#x578B;&#x4FE1;&#x606F;&#x3002;&#x4EE5;&#x6839;&#x636E; Method Service &#x8FD4;&#x56DE;&#x7C7B;&#x578B;&#x83B7;&#x53D6; Response type &#x4E3A;&#x4F8B;&#x3002;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> Type <span class="title">getCallResponseType</span><span class="params">(Type returnType)</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (!(returnType <span class="keyword">instanceof</span> ParameterizedType)) {</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(</span><br><span class="line">          <span class="string">&quot;Call return type must be parameterized as Call&lt;Foo&gt; or Call&lt;? extends Foo&gt;&quot;</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> getParameterUpperBound(<span class="number">0</span>, (ParameterizedType) returnType);</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> Type <span class="title">getParameterUpperBound</span><span class="params">(<span class="keyword">int</span> index, ParameterizedType type)</span> </span>{</span><br><span class="line">    Type[] types = type.getActualTypeArguments();</span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt;= types.length) {</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(</span><br><span class="line">          <span class="string">&quot;Index &quot;</span> + index + <span class="string">&quot; not in range [0,&quot;</span> + types.length + <span class="string">&quot;) for &quot;</span> + type);</span><br><span class="line">    }</span><br><span class="line">    Type paramType = types[index];</span><br><span class="line">    <span class="keyword">if</span> (paramType <span class="keyword">instanceof</span> WildcardType) {</span><br><span class="line">      <span class="keyword">return</span> ((WildcardType) paramType).getUpperBounds()[<span class="number">0</span>];</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> paramType;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x4EE3;&#x7801;&#x5199;&#x7684;&#x5F88;&#x6E05;&#x695A;&#xFF0C;&#x4F3C;&#x4E4E;&#x4E5F;&#x4E0D;&#x9700;&#x8981;&#x89E3;&#x91CA;&#xFF0C;( &gt;&#xFE4F;&lt; )&#xFF0C;&#x8FD9;&#x4E9B; API &#x5012;&#x662F;&#x957F;&#x89C1;&#x8BC6;&#x3002;</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/31/Android开发杂谈/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android开发杂谈</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Azzwen
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
